@@ -11,24 +11,30 @@
 </head>
 
 <body>
+    <h1 class="display-1 text-center">Pets</h1>
     <div class="container">
-        <h1 class="display-1 text-center">Pets</h1>
 
-        {% for pet in pets %}
-        <div class="card col-3" style=" width: 18rem;"">
-            <img src=" {{pet.photo_url}}" class="card-img-top" alt="...">
-            <p class="card-text"><a href="/{{pet.id}}">{{pet.name}}</a>
-                {% if pet.available %}
-                <span class="text-info">is available</span>
-                {% else %}
-                <span class="text-success">has found a home!! :) :)</span>
-                {% endif %}
-            </p>
+        <div class="row justify-content-center">
+            {% for pet in pets %}
+            <div class="card m-3" style=" width: 18rem;"">
+            <img src=" {{pet.image_url()}}" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-text"><a href="/{{pet.id}}">{{pet.name}}</a>
+                        {% if pet.available %}
+                        <span class="text-info">is available</span>
+                        {% else %}
+                        <span class="text-success">has found a home!! :) :)</span>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-        <div class="text-center">
-            <a href="/add" class="btn btn-success">Add pet</a>
-        </div>
+    </div>
+
+    <div class="text-center">
+        <a href="/add" class="btn btn-success">Add pet</a>
+    </div>
     </div>
 </body>
 

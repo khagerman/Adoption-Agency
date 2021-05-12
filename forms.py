@@ -19,14 +19,12 @@ class AddPetForm(FlaskForm):
     species = SelectField(
         "Species", choices=[("cat", "Cat"), ("dog", "Dog"), ("porcupine", "Porcupine")]
     )
-    photo_url = StringField("Image Url", validators=[Optional(), URL()]) or None
+    photo_url = StringField("Image Url", validators=[Optional(), URL()])
     age = IntegerField("Age", [Optional(), NumberRange(min=0, max=30)])
     notes = StringField("Notes")
 
 
-# class EditPetForm(FlaskForm):
-#     name = StringField(
-#         "Employee Name", validators=[InputRequired(message="Name cannot be blank")]
-#     )
-#     state = SelectField("State", choices=[(st, st) for st in states])
-#     dept_code = SelectField("Department Code")
+class EditPetForm(FlaskForm):
+    photo_url = StringField("Image Url", validators=[Optional(), URL()])
+    notes = StringField("Notes")
+    available = BooleanField("Available to Adopt?")

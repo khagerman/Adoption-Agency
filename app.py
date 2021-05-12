@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, Pet
-from forms import AddPetForm
+from forms import AddPetForm, EditPetForm
 
 
 app = Flask(__name__)
@@ -43,52 +43,15 @@ def add_pet():
         return render_template("add_pet_form.html", form=form)
 
 
-# @app.route("/employees/new", methods=["GET", "POST"])
-# def add_employee():
-#     form = EmployeeForm()
-#     depts = db.session.query(Department.dept_code, Department.dept_name)
-#     form.dept_code.choices = depts
-#     if form.validate_on_submit():
-#         name = form.name.data
-#         state = form.state.data
-#         dept_code = form.dept_code.data
-
-#         emp = Employee(name=name, state=state, dept_code=dept_code)
-#         db.session.add(emp)
-#         db.session.commit()
-#         return redirect("/phones")
-#     else:
-#         return render_template("add_employee_form.html", form=form)
-
-
 @app.route("/<int:id>/", methods=["GET", "POST"])
 def edit_pet(id):
     pet = Pet.query.get_or_404(id)
-    form = AddPetForm(obj=pet)
+    form = EditPetForm(obj=pet)
     if form.validate_on_submit():
-        pet.name = form.name.data
-        pet.species = form.species.data
         pet.photo_url = form.photo_url.data
-        pet.age = form.age.data
         pet.notes = form.notes.data
+        pet.available = form.available.data
         db.session.commit()
         return redirect("/")
     else:
         return render_template("edit_pet_form.html", form=form, pet=pet)
-
-
-#     @app.route("/<int:id>/edit", methods=["GET", "POST"])
-# def edit_employee(id):
-#     emp = Employee.query.get_or_404(id)
-#     form = EmployeeForm(obj=emp)
-#     depts = db.session.query(Department.dept_code, Department.dept_name)
-#     form.dept_code.choices = depts
-
-#     if form.validate_on_submit():
-#         emp.name = form.name.data
-#         emp.state = form.state.data
-#         emp.dept_code = form.dept_code.data
-#         db.session.commit()
-#         return redirect("/phones")
-#     else:
-#         return render_template("edit_employee_form.html", form=form)

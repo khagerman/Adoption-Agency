@@ -15,15 +15,14 @@
   <div class="container">
     <h1 class="display-1 text-center">{{pet.name}}</h1>
     <div class="row">
-      <div class="col-4">
-        <img src="{{pet.photo_url}}alt="" style=" width: 18rem;">
-
+      <div class="col mb-3">
+        <img src="{{pet.image_url()}}" style=" width: 18rem;">
       </div>
       <ul class=" col-6 list-group">
         <li class="list-group-item">Info about {{pet.name}}</li>
         <li class="list-group-item">Name: {{pet.name}}</li>
         <li class="list-group-item">Species: {{pet.species}}</li>
-        {%if pet.age%}<li class="list-group-item">Age{{pet.age}}</li>{%endif%}
+        {%if pet.age%}<li class="list-group-item">Age: {{pet.age}}</li>{%endif%}
         {%if pet.notes%}<li class="list-group-item"> Notes: {{pet.notes}}</li>{%endif%}
 
       </ul>
