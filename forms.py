@@ -8,7 +8,7 @@ from wtforms import (
     SelectField,
     TextAreaField,
 )
-from wtforms.validators import InputRequired, Email, Optional
+from wtforms.validators import InputRequired, URL, Optional, NumberRange
 
 
 class AddPetForm(FlaskForm):
@@ -16,27 +16,15 @@ class AddPetForm(FlaskForm):
     name = StringField(
         "Pet Name", validators=[InputRequired(message="Pet Name can't be blank")]
     )
-    species = StringField(
-        "Species", validators=[InputRequired(message="Species can't be blank")]
+    species = SelectField(
+        "Species", choices=[("cat", "Cat"), ("dog", "Dog"), ("porcupine", "Porcupine")]
     )
-    img = StringField("Image Url")
-    age = IntegerField("Age")
+    photo_url = StringField("Image Url", validators=[Optional(), URL()]) or None
+    age = IntegerField("Age", [Optional(), NumberRange(min=0, max=30)])
     notes = StringField("Notes")
 
 
-#     # category = RadioField("Category", choices=[
-#     #                       ('ic', 'Ice Cream'),  ('chips', 'Potato Chips'),  ('candy', 'Candy/Sweets')])
-#     category = SelectField(
-#         "Category",
-#         choices=[
-#             ("ic", "Ice Cream"),
-#             ("chips", "Potato Chips"),
-#             ("candy", "Candy/Sweets"),
-#         ],
-#     )
-
-
-# class EmployeeForm(FlaskForm):
+# class EditPetForm(FlaskForm):
 #     name = StringField(
 #         "Employee Name", validators=[InputRequired(message="Name cannot be blank")]
 #     )
