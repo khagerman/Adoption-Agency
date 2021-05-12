@@ -25,7 +25,7 @@ def home_page():
 
 @app.route("/add", methods=["GET", "POST"])
 def add_pet():
-    """Renders snack form (GET) or handles snack form submission (POST)"""
+    """Renders add pet form (GET) or handles pet form submission (POST)"""
     form = AddPetForm()
     if form.validate_on_submit():
         name = form.name.data
@@ -45,6 +45,7 @@ def add_pet():
 
 @app.route("/<int:id>/", methods=["GET", "POST"])
 def edit_pet(id):
+    """Renders info about specific pet and form to edit (GET) or handles edit pet form submission (POST)"""
     pet = Pet.query.get_or_404(id)
     form = EditPetForm(obj=pet)
     if form.validate_on_submit():

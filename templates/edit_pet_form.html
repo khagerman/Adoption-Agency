@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <title>New Pet</title>
+  <title>{{pet.name}}</title>
 
 </head>
 
@@ -15,11 +15,11 @@
   <div class="container">
     <h1 class="display-1 text-center">{{pet.name}}</h1>
     <div class="row">
-      <div class="col mb-3">
+      <div class="col mb-3 text-center">
         <img src="{{pet.image_url()}}" style=" width: 18rem;">
       </div>
-      <ul class=" col-6 list-group">
-        <li class="list-group-item">Info about {{pet.name}}</li>
+      <ul class=" col-6 list-group m-3">
+        <li class="list-group-item list-group-item-info text-center">Info about {{pet.name}}</li>
         <li class="list-group-item">Name: {{pet.name}}</li>
         <li class="list-group-item">Species: {{pet.species}}</li>
         {%if pet.age%}<li class="list-group-item">Age: {{pet.age}}</li>{%endif%}
